@@ -1,0 +1,71 @@
+body {
+    font-family: 'Noto Nastaliq Urdu', 'Amiri', serif;
+    background: url("../images/back.jpg") no-repeat center center fixed;
+    background-size: cover;
+    text-align: center;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background: rgba(212, 175, 55, 0.9); /* Golden with transparency */
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    font-size: 28px;
+    color: #400D12;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #6D4C41;
+}
+
+.chat-box {
+    max-height: 600px;
+    overflow-y: auto;
+    text-align: left;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.chat-message {
+    padding: 8px;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.chat-message.user {
+    background: #D1C4E9;
+    text-align: right;
+}
+
+.chat-message.bot {
+    background: #B2DFDB;
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+input {
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+button {
+    width: 18%;
+    background: #8D6E63;
+    color: #FFF;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
