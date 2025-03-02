@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAWAB GPT | BABUA BIHARI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+            <h1 class="logo">NAWAB GPT</h1>
+            <p class="subtitle">Lucknowi charm in AI!</p>
+            <ul>
+                <li><a href="#about">About Lucknow</a></li>
+                <li><a href="#attractions">Attractions</a></li>
+                <li><a href="#culture">Culture</a></li>
+                <li><a href="#food">Food</a></li>
+            </ul>
+        </nav>
+
+        
+        <div class="chat-box" id="chat-box">
+            <div class="chat-message bot">*Arz hai*, जनाब! आप क्या पूछना चाहते हैं? 😌</div>
+        </div>
+
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="पूछिए नवाबी अंदाज़ में...">
+            <button onclick="sendMessage()">🔍</button>
+        </div>
+        <section id="about">
+            <h2>About Lucknow</h2>
+            <p>Experience the elegance of the Nawabs, the architectural marvels, and the rich history of Lucknow.</p>
+        </section>
+        
+        <section id="attractions">
+            <h2>Attractions</h2>
+            <div class="grid">
+                <div class="card"><img src="static/images/bara_imambara.jpg" alt="Bara Imambara" style="width:500px; height:400px;"><p>Bara Imambara</p></div>
+                <div class="card"><img src="static/images/rumi_darwaza.jpg" alt="Rumi Darwaza" style="width:500px; height:400px;"><p>Rumi Darwaza</p></div>
+            </div>
+        </section>
+        
+        <section id="culture">
+            <h2>Culture</h2>
+            <p>From Chikankari embroidery to Kathak dance, explore Lucknow’s rich cultural heritage.</p>
+            <div class="grid">
+                <div class="card"><img src="static/images/chik-3.jpg" alt="Chikan Embroidery" style="width:500px; height:400px;"><p>Chikan Embroidery</p></div>
+            </div>
+        </section>
+        
+        <section id="food">
+            <h2>Food</h2>
+            <div class="grid">
+                <div class="card"><img src="static/images/tunday_kebab.jpg" alt="Tunday Kebab" style="width:500px; height:400px;"><p>Tunday Kebab</p></div>
+                <div class="card"><img src="static/images/makhan_malai.jpg" alt="Makhan Malai" style="width:500px; height:400px;"><p>Makhan Malai</p></div>
+            </div>
+            <footer>
+                <p> The Replies are AI Generated.</p>
+                <p>© 2025 NAWAB GPT | Designed with Lucknowi Elegance</p>
+                <p>© ARPIT CHHABRA</p>
+            </footer>
+        </section>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var userMessage = $("#user-input").val();
+            if (userMessage.trim() === "") return;
+
+            $("#chat-box").append('<div class="chat-message user">' + userMessage + '</div>');
+            $("#user-input").val("");
+
+            $.ajax({
+                type: "POST",
+                url: "/chat",
+                contentType: "application/json",
+                data: JSON.stringify({ message: userMessage }),
+                success: function(response) {
+                    $("#chat-box").append('<div class="chat-message bot">' + response.response + '</div>');
+                }
+            });
+        }
+        
+    </script>
+    
+    
+</body>
+</html>
