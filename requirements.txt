@@ -3,4 +3,5 @@ Flask-Cors
 requests
 gunicorn
 google.generativeai
+dotenv
 
