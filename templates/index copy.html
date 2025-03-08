@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAWAB GPT</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+    font-family: 'Noto Nastaliq Urdu', 'Amiri', serif;
+    background: url("") no-repeat center center fixed;
+    background-size: cover;
+    text-align: center;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background: rgba(212, 175, 55, 0.9); /* Golden with transparency */
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    font-size: 28px;
+    color: #400D12;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #6D4C41;
+}
+
+.chat-box {
+    max-height: 600px;
+    overflow-y: auto;
+    text-align: left;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.chat-message {
+    padding: 8px;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.chat-message.user {
+    background: #D1C4E9;
+    text-align: right;
+}
+
+.chat-message.bot {
+    background: #B2DFDB;
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+input {
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+button {
+    width: 18%;
+    background: #8D6E63;
+    color: #FFF;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+    </style>
+
+
+</head>
+<body>
+    <div class="container">
+            <h1 class="logo">NAWAB GPT</h1>
+            <p class="subtitle">Lucknowi charm in AI!</p>
+            <ul>
+                <li><a href="#about">About Lucknow</a></li>
+                <li><a href="#attractions">Attractions</a></li>
+                <li><a href="#culture">Culture</a></li>
+                <li><a href="#food">Food</a></li>
+            </ul>
+        </nav>
+
+        
+        <div class="chat-box" id="chat-box">
+            <div class="chat-message bot">*Arz hai*, जनाब! आप क्या पूछना चाहते हैं? 😌</div>
+        </div>
+
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="पूछिए नवाबी अंदाज़ में...">
+            <button onclick="sendMessage()">🔍</button>
+        </div>
+        <section id="about">
+            <h2>About Lucknow</h2>
+            <p>Experience the elegance of the Nawabs, the architectural marvels, and the rich history of Lucknow.</p>
+        </section>
+        
+        <section id="attractions">
+            <h2>Attractions</h2>
+            <div class="grid">
+                <div class="card"><img src="static/images/bara_imambara.jpg" alt="Bara Imambara" style="width:500px; height:400px;"><p>Bara Imambara</p></div>
+                <div class="card"><img src="static/images/rumi_darwaza.jpg" alt="Rumi Darwaza" style="width:500px; height:400px;"><p>Rumi Darwaza</p></div>
+            </div>
+        </section>
+        
+        <section id="culture">
+            <h2>Culture</h2>
+            <p>From Chikankari embroidery to Kathak dance, explore Lucknow’s rich cultural heritage.</p>
+            <div class="grid">
+                <div class="card"><img src="static/images/chik-3.jpg" alt="Chikan Embroidery" style="width:500px; height:400px;"><p>Chikan Embroidery</p></div>
+            </div>
+        </section>
+        
+        <section id="food">
+            <h2>Food</h2>
+            <div class="grid">
+                <div class="card"><img src="static/images/tunday_kebab.jpg" alt="Tunday Kebab" style="width:500px; height:400px;"><p>Tunday Kebab</p></div>
+                <div class="card"><img src="static/images/makhan_malai.jpg" alt="Makhan Malai" style="width:500px; height:400px;"><p>Makhan Malai</p></div>
+            </div>
+            <footer>
+                <p> The Replies are AI Generated.</p>
+                <p>© 2025 NAWAB GPT | Designed with Lucknowi Elegance</p>
+                <p>© ARPIT CHHABRA</p>
+            </footer>
+        </section>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var userMessage = $("#user-input").val();
+            if (userMessage.trim() === "") return;
+
+            $("#chat-box").append('<div class="chat-message user">' + userMessage + '</div>');
+            $("#user-input").val("");
+
+            $.ajax({
+                type: "POST",
+                url: "/chat",
+                contentType: "application/json",
+                data: JSON.stringify({ message: userMessage }),
+                success: function(response) {
+                    $("#chat-box").append('<div class="chat-message bot">' + response.response + '</div>');
+                }
+            });
+        }
+        
+    </script>
+    
+    
+</body>
+</html>
